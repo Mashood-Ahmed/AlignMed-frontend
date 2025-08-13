@@ -31,7 +31,7 @@ export default function SettlementsPage() {
   const [groupBy, setGroupBy] = useState<"month" | "attorneys">("month");
   const [viewType, setViewType] = useState<"table" | "graph">("table");
 
-  const [groupByPeriod, setGroupByPeriod] = useState<string>("By Week");
+  const [groupByPeriod, setGroupByPeriod] = useState<string>("Week");
 
   const [dateRange, setDateRange] = useState<string>("This Year");
   const [selectedAttorneys, setSelectedAttorneys] = useState<string[]>([]);
@@ -160,15 +160,14 @@ export default function SettlementsPage() {
           columns = [...(new Set(allKeys) as Set<string>)].filter(
             (key) => key !== primaryKey
           );
-
-          if (groupBy === "attorneys") {
-            columns.sort(
-              (a, b) => parseInt(b.split(" ")[1]) - parseInt(a.split(" ")[1])
-            );
-          }
         }
       }
 
+      if (groupBy === "attorneys") {
+        columns.sort(
+          (a, b) => parseInt(b.split(" ")[1]) - parseInt(a.split(" ")[1])
+        );
+      }
       return { results, count, primaryKey, columns };
     },
     enabled: !isLoadingAttorneys,
@@ -218,7 +217,7 @@ export default function SettlementsPage() {
       baseFilters.push({
         key: "groupByPeriod",
         label: "Group By",
-        options: ["By Year", "By Month", "By Week", "Today"],
+        options: ["Year", "Month", "Week", "Date"],
         value: groupByPeriod,
         onChange: (val: string | string[]) => {
           setGroupByPeriod(Array.isArray(val) ? val[0] : val);
