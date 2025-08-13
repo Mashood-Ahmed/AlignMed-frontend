@@ -56,15 +56,34 @@ export const formatDatePretty = (dateString: string) => {
 
 
 
-export const getGroupByFromDateRange = (dateRange: string): string => {
-  switch (dateRange) {
+
+
+
+export const getDateRangeFromGroupBy = (period: string) => {
+  switch (period) {
+    case "Today":
+      return getDateRange("Today");
+    case "By Week":
+      return getDateRange("This Week");
+    case "By Month":
+      return getDateRange("This Month");
+    case "By Year":
+      return getDateRange("This Year");
+    default:
+      return getDateRange("This Month");
+  }
+};
+
+
+export const getApiGroupBy = (period: string): string => {
+  switch (period) {
     case "Today":
       return "today";
-    case "This Week":
+    case "By Week":
       return "week";
-    case "This Month":
+    case "By Month":
       return "month";
-    case "This Year":
+    case "By Year":
       return "year";
     default:
       return "month";
