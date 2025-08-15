@@ -192,7 +192,10 @@ export default function SettlementsPage() {
   };
 
   const groupByOptions = [
-    { value: "month", label: "By Date" },
+    {
+      value: "month",
+      label: groupBy === "month" ? `By ${groupByPeriod}` : "By Date",
+    },
     { value: "attorneys", label: "By Attorneys" },
   ];
 
