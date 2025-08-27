@@ -89,8 +89,8 @@ export default function SettlementsPage() {
     const baseBody = {
       page_number: page,
       page_size: pageSize,
-      start_date: dateRangeData.start_date,
-      end_date: dateRangeData.end_date,
+      start_date: dateRangeData?.start_date ?? null,
+      end_date: dateRangeData?.end_date ?? null,
     };
 
     if (groupBy === "month") {
@@ -254,7 +254,13 @@ export default function SettlementsPage() {
       baseFilters.push({
         key: "dateRange",
         label: "Date Range",
-        options: ["Today", "This Week", "This Month", "This Year", "Custom"],
+        options: [
+          "Yesterday",
+          "This Week",
+          "This Month",
+          "This Year",
+          "Custom",
+        ],
         value: dateRange,
         onChange: (val: string | string[]) => {
           const newDateRange = Array.isArray(val) ? val[0] : val;
@@ -295,8 +301,8 @@ export default function SettlementsPage() {
         endDate
       );
       return {
-        startDate: dateRangeData.start_date,
-        endDate: dateRangeData.end_date,
+        startDate: dateRangeData?.start_date ?? null,
+        endDate: dateRangeData?.end_date ?? null,
       };
     } else {
       const dateRangeData = getDateRange(dateRange);

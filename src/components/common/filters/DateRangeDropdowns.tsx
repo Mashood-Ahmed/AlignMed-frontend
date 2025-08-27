@@ -62,6 +62,7 @@ export default function DateRangeDropdowns({
               inputProps={{
                 min: startMin,
                 max: startMax,
+                onPointerEnter: (e: any) => (e.currentTarget.title = ""),
               }}
               sx={{
                 minHeight: 40,
@@ -86,6 +87,7 @@ export default function DateRangeDropdowns({
               inputProps={{
                 min: endMin,
                 max: endMax,
+                onPointerEnter: (e: any) => (e.currentTarget.title = ""),
               }}
               sx={{
                 minHeight: 40,
